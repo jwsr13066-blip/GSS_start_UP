@@ -4,11 +4,16 @@
     <meta charset="utf-8" />
     <title>GSS - 스타트업 투자 큐레이션</title>
 
-    <!-- 기본 메타 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="description" content="GSS - 스타트업 정보를 큐레이션하고, 관심 스타트업을 한 눈에 모아보는 투자 인사이트 서비스" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="GSS - 스타트업 정보를 큐레이션하고, 관심 스타트업을 한 눈에 모아보는 투자 인사이트 서비스"
+    />
 
-    <!-- PWA 관련 -->
+    <!-- PWA -->
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#0b3b57" />
     <link rel="icon" type="image/png" href="icon.png" />
@@ -17,22 +22,37 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="GSS" />
 
-    <!-- Open Graph (링크 공유용) -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="GSS - 스타트업 투자 큐레이션" />
-    <meta property="og:description" content="관심 스타트업을 큐레이션하고, 브랜드 스토리·서비스·유저 관심도를 한 번에 확인해 보세요." />
-    <meta property="og:image" content="https://jwsr13066-blip.github.io/GSS_start_UP/og_image.png" />
-    <meta property="og:url" content="https://jwsr13066-blip.github.io/GSS_start_UP/" />
+    <meta
+      property="og:description"
+      content="관심 스타트업을 큐레이션하고, 브랜드 스토리·서비스·유저 관심도를 한 번에 확인해 보세요."
+    />
+    <!-- GitHub Pages 주소에 맞게 설정 -->
+    <meta
+      property="og:image"
+      content="https://jwsr13066-blip.github.io/GSS_start_UP/og_image.png"
+    />
+    <meta
+      property="og:url"
+      content="https://jwsr13066-blip.github.io/GSS_start_UP/"
+    />
     <meta property="og:site_name" content="GSS" />
 
-    <!-- (선택) 트위터 카드 -->
+    <!-- Twitter 카드 -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="GSS - 스타트업 투자 큐레이션" />
-    <meta name="twitter:description" content="스타트업 투자 전, GSS에서 한 번에 큐레이션된 정보를 확인해 보세요." />
-    <meta name="twitter:image" content="https://jwsr13066-blip.github.io/GSS_start_UP/og_image.png" />
+    <meta
+      name="twitter:description"
+      content="스타트업 투자 전, GSS에서 한 번에 큐레이션된 정보를 확인해 보세요."
+    />
+    <meta
+      name="twitter:image"
+      content="https://jwsr13066-blip.github.io/GSS_start_UP/og_image.png"
+    />
 
     <style>
-      /* 여기 아래에 기존에 쓰던 스타일 있으면 붙여 넣어도 됨 */
       :root {
         --gss-bg: #0b3b57;
         --gss-card: #0f4769;
@@ -47,18 +67,17 @@
       body {
         margin: 0;
         min-height: 100vh;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
         background: var(--gss-bg);
         color: var(--gss-accent);
         display: flex;
-        align-items: stretch;
         justify-content: center;
       }
 
       .app-shell {
         width: 100%;
         max-width: 960px;
-        margin: 0 auto;
         padding: 24px 16px 40px;
       }
 
@@ -69,7 +88,7 @@
         margin-bottom: 24px;
       }
 
-      header .logo {
+      .logo {
         width: 40px;
         height: 40px;
         border-radius: 16px;
@@ -179,38 +198,38 @@
         </div>
       </header>
 
-      <!-- 여기 안쪽 내용을 니가 이전에 쓰던 카드/페이지 구조로 바꿔도 됨 -->
       <main>
+        <!-- ✅ 여기 카드가 바로 “큐레이션” 영역 -->
         <section class="card">
           <div class="card-title">오늘의 스타트업 큐레이션</div>
           <div class="card-sub">
-            브랜드 스토리 · 서비스 구조 · 유저 관심도(투표/댓글)를 한 번에 확인하고,
-            투자 전 체크 포인트를 빠르게 정리해 보세요.
+            브랜드 스토리 · 아이템 &amp; 서비스 · 유저 관심도(투표/댓글)를 한 번에
+            확인하고, 투자 전 체크 포인트를 빠르게 정리해 보세요.
           </div>
 
           <div class="pill-row">
             <span class="pill">브랜드 스토리</span>
             <span class="pill">아이템 &amp; 서비스</span>
             <span class="pill">관심도 투표</span>
-            <span class="pill">댓글 토론</span>
+            <span class="pill">댓글 피드백</span>
             <span class="pill">투자사인 준비</span>
           </div>
 
           <div class="actions">
-            <button class="btn-primary">지금 스타트업 보러가기</button>
+            <button class="btn-primary">큐레이션 리스트 보기</button>
             <button class="btn-secondary">내 관심 스타트업 저장</button>
           </div>
 
           <div class="meta-row">
-            <span>📱 PWA 설치 가능</span>
-            <span>🔔 알림으로 신규 스타트업 소식 받기</span>
+            <span>📱 홈 화면에 설치하면 PWA로 사용할 수 있어요.</span>
+            <span>🔔 알림으로 신규 스타트업 업데이트 받기</span>
           </div>
         </section>
       </main>
     </div>
 
     <script>
-      // 서비스 워커 등록 (PWA 필수)
+      // 서비스 워커 등록
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
           navigator.serviceWorker
