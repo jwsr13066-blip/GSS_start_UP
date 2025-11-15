@@ -1,247 +1,1044 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <title>GSS - 스타트업 투자 큐레이션</title>
+<head>
+  <meta charset="UTF-8" />
+  <title>GSS – 초기 스타트업 큐레이션</title>
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
-    <meta
-      name="description"
-      content="GSS - 스타트업 정보를 큐레이션하고, 관심 스타트업을 한 눈에 모아보는 투자 인사이트 서비스"
-    />
+  <!-- 기본 메타 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GSS – 초기 스타트업을 큐레이션하고, 브랜드 스토리·서비스·관심도를 한 번에 보는 투자 인사이트 플랫폼" />
 
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#0b3b57" />
-    <link rel="icon" type="image/png" href="icon.png" />
-    <link rel="apple-touch-icon" href="icon.png" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="GSS" />
+  <!-- PWA 관련 -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#f6f1e8" />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="apple-touch-icon" href="icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="GSS" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="GSS - 스타트업 투자 큐레이션" />
-    <meta
-      property="og:description"
-      content="관심 스타트업을 큐레이션하고, 브랜드 스토리·서비스·유저 관심도를 한 번에 확인해 보세요."
-    />
-    <!-- GitHub Pages 주소에 맞게 설정 -->
-    <meta
-      property="og:image"
-      content="https://jwsr13066-blip.github.io/GSS_start_UP/og_image.png"
-    />
-    <meta
-      property="og:url"
-      content="https://jwsr13066-blip.github.io/GSS_start_UP/"
-    />
-    <meta property="og:site_name" content="GSS" />
+  <!-- Open Graph (GitHub Pages 기준 URL) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GSS – 초기 스타트업 큐레이션" />
+  <meta property="og:description" content="Seed & Pre-A 스타트업을 한 화면에서 큐레이션하고, 투자 전 핵심 포인트를 정리해 보세요." />
+  <meta property="og:image" content="https://jwsr13066-blip.github.io/GSS_start_UP/og_image.png" />
+  <meta property="og:url" content="https://jwsr13066-blip.github.io/GSS_start_UP/" />
+  <meta property="og:site_name" content="GSS" />
 
-    <!-- Twitter 카드 -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="GSS - 스타트업 투자 큐레이션" />
-    <meta
-      name="twitter:description"
-      content="스타트업 투자 전, GSS에서 한 번에 큐레이션된 정보를 확인해 보세요."
-    />
-    <meta
-      name="twitter:image"
-      content="https://jwsr13066-blip.github.io/GSS_start_UP/og_image.png"
-    />
+  <!-- Twitter 카드 (선택) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GSS – 초기 스타트업 큐레이션" />
+  <meta name="twitter:description" content="초기 스타트업 투자 인사이트를 큐레이션하는 GSS 서비스" />
+  <meta name="twitter:image" content="https://jwsr13066-blip.github.io/GSS_start_UP/og_image.png" />
 
-    <style>
-      :root {
-        --gss-bg: #0b3b57;
-        --gss-card: #0f4769;
-        --gss-accent: #ffffff;
-        --gss-radius: 24px;
-      }
+  <style>
+    :root {
+      --bg-paper: #f6f1e8;
+      --bg-app: #fdfaf5;
+      --accent: #111827;
+      --text-main: #111827;
+      --text-sub: #6b7280;
+    }
 
-      * {
-        box-sizing: border-box;
-      }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      body {
-        margin: 0;
-        min-height: 100vh;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          sans-serif;
-        background: var(--gss-bg);
-        color: var(--gss-accent);
-        display: flex;
-        justify-content: center;
-      }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #fefcf7 0, #efe3cf 60%, #e5d7c7 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
+    }
 
+    .app-shell {
+      width: 100%;
+      max-width: 480px;
+      height: 90vh;
+      max-height: 880px;
+      background: var(--bg-app);
+      border-radius: 32px;
+      box-shadow: 0 40px 80px rgba(15, 23, 42, 0.45);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.4),
+          transparent 40%,
+          transparent 60%,
+          rgba(255, 255, 255, 0.25)
+        ),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.04) 0,
+          rgba(0, 0, 0, 0.04) 1px,
+          transparent 1px,
+          transparent 18px
+        );
+      mix-blend-mode: multiply;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .app-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .app-header {
+      padding: 14px 18px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #ffffff 0%, #e6efff 40%, #6fa8ff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e3a8a;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.8px;
+      text-transform: uppercase;
+      box-shadow: 0 6px 14px rgba(80, 130, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .brand-text-main {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-text-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 18px;
+      color: #4b5563;
+    }
+
+    .header-icon-btn {
+      border: none;
+      background: none;
+      padding: 4px;
+      cursor: pointer;
+      border-radius: 999px;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .header-icon-btn:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .header-icon-btn:active {
+      transform: scale(0.94);
+    }
+
+    .sub-header {
+      padding: 4px 18px 10px;
+    }
+
+    .sub-title {
+      font-size: 13px;
+      color: var(--text-sub);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-rotation {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      background: rgba(255, 255, 255, 0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      backdrop-filter: blur(6px);
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    .category-strip {
+      padding: 6px 14px 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .category-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-list {
+      display: flex;
+      gap: 10px;
+      padding-right: 10px;
+    }
+
+    .category-btn {
+      min-width: 96px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(15, 23, 42, 0.05);
+      transition: transform 0.14s ease, box-shadow 0.14s ease,
+        background 0.14s ease, border-color 0.14s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at 0 0,
+        rgba(248, 250, 252, 0.9),
+        transparent 55%
+      );
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .category-btn.active {
+      background: #111827;
+      color: #f9fafb;
+      border-color: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 7px 18px rgba(15, 23, 42, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .category-btn.active::before {
+      opacity: 0.5;
+    }
+
+    .category-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .category-sub {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    .content-area {
+      flex: 1;
+      padding: 6px 14px 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .feed-meta {
+      font-size: 11px;
+      color: var(--text-sub);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4px 4px;
+    }
+
+    .feed-meta strong {
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .startup-list-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 4px;
+      position: relative;
+      perspective: 1200px;
+    }
+
+    .startup-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-bottom: 18px;
+    }
+
+    .startup-card {
+      background: var(--bg-paper);
+      border-radius: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 16px 30px rgba(55, 65, 81, 0.15);
+      position: relative;
+      overflow: hidden;
+      transform-origin: left center;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .startup-cover {
+      position: relative;
+      height: 190px;
+      overflow: hidden;
+    }
+
+    .startup-cover-image {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.03);
+      transition: transform 0.4s ease;
+    }
+
+    .startup-card:hover .startup-cover-image {
+      transform: scale(1.08);
+    }
+
+    .startup-cover-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.1));
+    }
+
+    .startup-cover-label {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 10px;
+      color: #f9fafb;
+    }
+
+    .startup-cover-name {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .startup-cover-tagline {
+      font-size: 11px;
+      opacity: 0.92;
+      margin-top: 2px;
+    }
+
+    .startup-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .badge-small {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      background: rgba(15, 23, 42, 0.75);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      backdrop-filter: blur(6px);
+    }
+
+    .badge-small span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #f97316;
+    }
+
+    .badge-small span.dot.green {
+      background: #22c55e;
+    }
+
+    .startup-content {
+      padding: 10px 14px 10px;
+    }
+
+    .startup-body {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #374151;
+      margin-top: 4px;
+    }
+
+    .startup-body strong {
+      font-weight: 600;
+    }
+
+    .startup-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .meta-tag-pill {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .meta-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-avatars {
+      display: flex;
+      align-items: center;
+    }
+
+    .meta-avatars span {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid #fef9c3;
+      background: linear-gradient(135deg, #fee2e2, #facc15);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      margin-left: -6px;
+      color: #111827;
+    }
+
+    .meta-avatars span:first-child {
+      margin-left: 0;
+    }
+
+    .bottom-nav {
+      padding: 8px 18px 14px;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(14px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bottom-nav button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 10px;
+      color: #9ca3af;
+    }
+
+    .bottom-nav button span.icon {
+      font-size: 18px;
+    }
+
+    .bottom-nav button.active {
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .startup-list-wrapper::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .startup-list-wrapper::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .startup-list-wrapper::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.16);
+      border-radius: 999px;
+    }
+
+    .detail-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(14px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 14px;
+      z-index: 10;
+    }
+
+    .detail-overlay.open {
+      display: flex;
+    }
+
+    .detail-panel {
+      width: 100%;
+      max-width: 460px;
+      max-height: 100%;
+      background: #fdfaf5;
+      border-radius: 26px;
+      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.6);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .detail-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      z-index: 2;
+      border: none;
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: rgba(15, 23, 42, 0.6);
+      color: #f9fafb;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .detail-scroll {
+      overflow-y: auto;
+      padding-bottom: 12px;
+    }
+
+    .detail-cover {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .detail-cover-image {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+    }
+
+    .detail-cover-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.15));
+    }
+
+    .detail-cover-label {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 16px;
+      color: #f9fafb;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .detail-name {
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .detail-tagline {
+      font-size: 12px;
+      opacity: 0.95;
+      margin-top: 3px;
+    }
+
+    .detail-section {
+      padding: 14px 18px 4px;
+    }
+
+    .detail-section h3 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #111827;
+    }
+
+    .detail-section p {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #374151;
+    }
+
+    .detail-items-list {
+      list-style: none;
+      margin-top: 4px;
+      font-size: 12px;
+      color: #374151;
+    }
+
+    .detail-items-list li::before {
+      content: "•";
+      margin-right: 4px;
+      color: #9ca3af;
+    }
+
+    .vote-box {
+      margin-top: 4px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #f3eee4;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .vote-label {
+      font-size: 12px;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .vote-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .vote-btn {
+      flex: 1 1 48%;
+      border-radius: 999px;
+      padding: 6px 8px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: #fff;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .vote-btn.active {
+      background: #111827;
+      color: #f9fafb;
+      border-color: #111827;
+    }
+
+    .vote-result {
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .vote-bar {
+      margin-top: 4px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+    }
+
+    .vote-bar-inner {
+      height: 100%;
+      background: linear-gradient(90deg, #22c55e, #facc15);
+      width: 0%;
+    }
+
+    .comments-box {
+      margin-top: 6px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #f7f5f0;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .comments-list {
+      max-height: 120px;
+      overflow-y: auto;
+      margin-bottom: 8px;
+    }
+
+    .comment-item {
+      font-size: 11px;
+      padding: 4px 0;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.06);
+    }
+
+    .comment-item:last-child {
+      border-bottom: none;
+    }
+
+    .comment-meta {
+      font-size: 10px;
+      color: #9ca3af;
+      margin-bottom: 2px;
+    }
+
+    .comment-text {
+      color: #374151;
+    }
+
+    .comment-form {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .comment-input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 6px 10px;
+      font-size: 11px;
+      background: #fff;
+    }
+
+    .comment-submit {
+      border-radius: 999px;
+      border: none;
+      padding: 6px 10px;
+      font-size: 11px;
+      background: #111827;
+      color: #f9fafb;
+      cursor: pointer;
+    }
+
+    .chat-cta-section {
+      padding: 8px 18px 14px;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chat-cta-text {
+      font-size: 11px;
+      color: #4b5563;
+    }
+
+    .chat-cta-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 7px 12px;
+      font-size: 11px;
+      background: #111827;
+      color: #f9fafb;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .detail-chat-box {
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      background: #f3eee4;
+      padding: 8px 14px 10px;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .detail-chat-box.open {
+      display: flex;
+    }
+
+    .chat-messages {
+      max-height: 140px;
+      overflow-y: auto;
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .chat-bubble {
+      max-width: 80%;
+      padding: 6px 8px;
+      border-radius: 12px;
+      background: #e5e7eb;
+      align-self: flex-start;
+    }
+
+    .chat-bubble.me {
+      background: #111827;
+      color: #f9fafb;
+      align-self: flex-end;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .chat-input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      padding: 6px 10px;
+      font-size: 11px;
+      background: #fff;
+    }
+
+    .chat-send-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 6px 10px;
+      font-size: 11px;
+      background: #111827;
+      color: #f9fafb;
+      cursor: pointer;
+    }
+
+    @media (max-width: 520px) {
       .app-shell {
-        width: 100%;
-        max-width: 960px;
-        padding: 24px 16px 40px;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
       }
-
-      header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 24px;
-      }
-
-      .logo {
-        width: 40px;
-        height: 40px;
-        border-radius: 16px;
-        background: center/cover no-repeat url("icon.png");
-        flex-shrink: 0;
-      }
-
-      header h1 {
-        font-size: 20px;
-        margin: 0;
-      }
-
-      header p {
-        margin: 0;
-        font-size: 13px;
-        opacity: 0.8;
-      }
-
-      .card {
-        background: var(--gss-card);
-        border-radius: var(--gss-radius);
-        padding: 20px 18px;
-        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
-      }
-
-      .card-title {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 8px;
-      }
-
-      .card-sub {
-        font-size: 13px;
-        opacity: 0.85;
-        margin-bottom: 16px;
-      }
-
-      .pill-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 16px;
-      }
-
-      .pill {
-        font-size: 11px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        opacity: 0.9;
-      }
-
-      .actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .btn-primary,
-      .btn-secondary {
-        border-radius: 999px;
-        font-size: 13px;
-        padding: 9px 14px;
-        border: none;
-        cursor: pointer;
-      }
-
-      .btn-primary {
-        background: #ffffff;
-        color: #0b3b57;
-        font-weight: 600;
-      }
-
-      .btn-secondary {
-        background: rgba(7, 26, 40, 0.4);
-        color: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-      }
-
-      .meta-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 18px;
-        font-size: 11px;
-        opacity: 0.8;
-      }
-
-      @media (min-width: 768px) {
-        .app-shell {
-          padding-top: 48px;
-        }
-
-        .card {
-          padding: 24px 22px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="app-shell">
-      <header>
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>GSS</h1>
-          <p>스타트업 투자 인사이트를 한 번에 모아보는 큐레이션 앱</p>
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="app-inner">
+      <header class="app-header">
+        <div class="brand">
+          <div class="brand-icon">GSS</div>
+          <div>
+            <div class="brand-text-main">GSS</div>
+            <div class="brand-text-sub">초기 스타트업 큐레이션 플랫폼</div>
+          </div>
+        </div>
+        <div class="header-right">
+          <button class="header-icon-btn" title="검색">🔍</button>
+          <button class="header-icon-btn" title="새 PR 작성">✏️</button>
         </div>
       </header>
 
-      <main>
-        <!-- ✅ 여기 카드가 바로 “큐레이션” 영역 -->
-        <section class="card">
-          <div class="card-title">오늘의 스타트업 큐레이션</div>
-          <div class="card-sub">
-            브랜드 스토리 · 아이템 &amp; 서비스 · 유저 관심도(투표/댓글)를 한 번에
-            확인하고, 투자 전 체크 포인트를 빠르게 정리해 보세요.
-          </div>
+      <section class="sub-header">
+        <div class="sub-title">
+          <span>이번 호: <strong>Seed &amp; Pre-A Stage</strong></span>
+          <span class="badge-rotation">
+            <span class="badge-dot"></span>
+            Weekly · Monthly Pick
+          </span>
+        </div>
+      </section>
 
-          <div class="pill-row">
-            <span class="pill">브랜드 스토리</span>
-            <span class="pill">아이템 &amp; 서비스</span>
-            <span class="pill">관심도 투표</span>
-            <span class="pill">댓글 피드백</span>
-            <span class="pill">투자사인 준비</span>
-          </div>
+      <section class="category-strip">
+        <div class="category-list"></div>
+      </section>
 
-          <div class="actions">
-            <button class="btn-primary">큐레이션 리스트 보기</button>
-            <button class="btn-secondary">내 관심 스타트업 저장</button>
-          </div>
-
-          <div class="meta-row">
-            <span>📱 홈 화면에 설치하면 PWA로 사용할 수 있어요.</span>
-            <span>🔔 알림으로 신규 스타트업 업데이트 받기</span>
-          </div>
-        </section>
+      <main class="content-area">
+        <div class="feed-meta">
+          <span>오늘의 큐레이션 · <strong id="feedCountLabel">0</strong> teams</span>
+          <span>슬라이드 넘기듯 카테고리 바꿔보기 ↔</span>
+        </div>
+        <div class="startup-list-wrapper">
+          <div class="startup-list" id="startupList"></div>
+        </div>
       </main>
-    </div>
 
-    <script>
-      // 서비스 워커 등록
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-          navigator.serviceWorker
-            .register("sw.js")
-            .then(function (reg) {
-              console.log("Service worker registered.", reg);
-            })
-            .catch(function (err) {
-              console.error("Service worker registration failed:", err);
-            });
-        });
-      }
-    </script>
-  </body>
-</html>
+      <nav class="bottom-nav">
+        <button class="active">
+          <span class="icon">🏠</span>
+          <span>홈</span>
+        </button>
+        <button>
+          <span class="icon">📰</span>
+          <span>피드</span>
+        </button>
+        <button>
+          <span class="icon">⭐</span>
+          <span>관심</span>
+        </button>
+        <button>
+          <span class="icon">💬</span>
+          <span>채팅</span>
+        </button>
+        <button>
+          <span class="icon">👤</span>
+          <span>마이</span>
+        </button>
+      </nav>
+
+      <div class="detail-overlay" id="detailOverlay">
+        <div class="detail-panel">
+          <button class="detail-close-btn" id="detailCloseBtn">✕</button>
+          <div class="detail-scroll">
+            <div class="detail-cover">
+              <div class="detail-cover-image" id="detailCoverImage"></div>
+              <div class="detail-cover-gradient"></div>
+              <div class="detail-cover-label">
+                <div>
+                  <div class="detail-name" id="detailName"></div>
+                  <div class="detail-tagline" id="detailTagline"></div>
+                </div>
+                <div class="startup-badges">
+                  <div class="badge-small" id="detailRotationBadge">
+                    <span class="dot" id="detailRotationDot"></span>
+                    <span id="detailRotationText"></span>
+                  </div>
+                  <div class="badge-small">
+                    <span id="detailWatchers"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <section class="detail-section">
+              <h3>Brand Story</h3>
+              <p id="detailStory"></p>
+            </section>
+
+            <section class="detail-section">
+              <h3>Item &amp; Service</h3>
+              <ul class="detail-items-list" id="detailItems"></ul>
+            </section>
+
+            <section class="detail-section">
+              <h3>관심도 투표</h3>
+              <div class="vote-box">
+                <div class="vote-label">이 서비스, 지금 당신의 상태는?</div>
+                <div class="vote-buttons">
+                  <button class="vote-btn" id="voteUsedBtn">✅ 이미 사용 중이에요</button>
+                  <button class="vote-btn" id="voteWantBtn">👍 사용해보고 싶어요</button>
+                  <button class="vote-btn" id="voteUnsureBtn">🤔 아직 잘 모르겠어요</button>
+                </div>
+                <div class="vote-bar">
+                  <div class="vote-bar-inner" id="voteBarInner"></div>
+                </div>
+                <div class="vote-result">
+                  <span>사용 중 <span id="voteUsedPercent">0</span>%</span>
+                  <span>사용 의향 <span id="voteWantPercent">0</span>%</span>
+                  <span>총 <span id="voteTotal">0</span>표</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="detail-section">
+              <h3>댓글</h3>
+              <div class="comments-box">
+                <div class="comments-list" id="commentsList"></div>
+                <div class="comment-form">
+                  <input class="comment-input" id="commentInput" placeholder="응원 또는 피드백을 남겨보세요" />
+                  <button class="comment-submit" id="commentSubmitBtn">등록</button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="chat-cta-section">
+            <div class="chat-cta-text">
+              관심 투자자와 바로 컨택해보고 싶다면?
+            </div>
+            <button class="chat-cta-btn" id="chatStartBtn">💬 채팅 시작하기</button>
+          </div>
+
+          <div class="detail-chat-box" id="detailChatBox">
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input-row">
+              <input class="chat-input" id="chatInput" placeholder="첫 메시지를 보내보세요" />
+              <button class="chat-send-btn" id="chatSendBtn">전송</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- 기존 JS 로직 -->
+  <script>
+    const categories = [
+      { id: "all", name: "전체", sub: "All picks" },
+      { id: "saas", name: "SaaS", sub: "B2B · 툴" },
+      { id: "consumer", name: "콘슈머", sub: "라이프스타일" },
+      { id: "impact", name: "임팩트", sub: "ESG · 사회문제" },
+      { id: "ai", name: "AI", sub: "생성형 · 인프라" },
+      { id: "fintech", name: "핀테크", sub: "결제 · 투자" },
+    ];
+
+    const startups = [
+      {
+        id: 1,
+        category: "saas",
+        name: "Flowboard",
+        tagline: "초기 스타트업 전용 올인원 OKR & 투자 리포트 툴",
+        rotation: "이번 주 PICK",
+        rotationColor: "orange",
+        summary:
+          "투자자 미팅 준비할 때마다 따로 정리하느라 힘들었다면, Flowboard에서 팀 목표·지표·IR 스토리를 한 번에 정리하고 공유할 수 있어요.",
+        tags: ["B2B SaaS", "Seed", "Remote 팀"],
+        updated: "이번 주 업데이트",
+        watchers: 32,
+        image:
+          "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80",
+        story:
+          "흩어져 있는 OKR과 KPI, IR 자료를 하나의 라이브 보드로 묶어 초기 단계에서도 투자자에게 '준비된 팀'이라는 인상을 주고자 하는 팀에서 시작된 제품입니다.",
+        items: [
+          "팀 OKR / KPI 통합 대시보드",
